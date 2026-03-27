@@ -9,6 +9,17 @@
 -Install react router dom
 Create BrowserRouter > Routes > Route=/ Body > RouteChildren
 -create a footer
+-Create a Login Page
+-Install axios
+CORS - install cors in backend => add middleware to with configurations: origin, credentials: true
+-Install Redux Toolkit - 
+-install react-redux + @reduxjs/toolkit => configureStore => Provider => createSlice => add reducer to store
+-configureStore => Provider => createSlice => add reducer to store
+-Add redux devtools in chrome
+Login and seeing whether the data is coming properly in the store
+-navBar should update as soon as user logs in
+-adding constants file + create a component folder
+-we should not be able to access other routes without logining in
 
 
 Body
