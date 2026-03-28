@@ -20,7 +20,8 @@ Login and seeing whether the data is coming properly in the store
 -navBar should update as soon as user logs in
 -adding constants file + create a component folder
 -we should not be able to access other routes without logining in
-
+-Logout Feature
+-Profile
 
 Body
     NavBar

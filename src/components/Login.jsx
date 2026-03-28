@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { addUser } from "./utils/userSlice";
+import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "./utils/constants";
+import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [emailId,setEmailId] = useState("");
   const [password,setPassword] = useState("");
+  const [error,setError] = useState("")
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogin = async () => {
@@ -20,7 +21,7 @@ const Login = () => {
     dispatch(addUser(res.data));
     return navigate("/");
     }catch(err){
-      console.log(err?.response?.data || "Something went wrong");
+      setError(err?.response?.data || "Something went wrong");
     }
   }
 
@@ -46,7 +47,7 @@ const Login = () => {
               className="input" placeholder="Type here" />
             </fieldset>
           </div>
-          <p className></p>
+          <p className="text-red-500">{error}</p>
           <div className="card-actions justify-end">
             <button className="btn btn-primary" onClick={handleLogin}>Login</button>
           </div>

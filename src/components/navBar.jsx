@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { BASE_URL } from './utils/constants'
+import { BASE_URL } from '../utils/constants'
 import axios from 'axios'
-import { removeUser } from './utils/userSlice'
+import { removeUser } from '../utils/userSlice'
 const NavBar = () => {
   const user = useSelector(store => store.user)
   const dispatch = useDispatch();
