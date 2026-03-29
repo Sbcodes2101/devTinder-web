@@ -5,8 +5,8 @@ const Footer = () => {
     <footer className="footer sm:footer-horizontal text-neutral-content p-4 fixed bottom-0 flex justify-between bg-base-200">
       <aside>
         <svg
-          width="50"
-          height="50"
+          width="10"
+          height="10"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
           fillRule="evenodd"
