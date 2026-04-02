@@ -21,7 +21,11 @@ Login and seeing whether the data is coming properly in the store
 -adding constants file + create a component folder
 -we should not be able to access other routes without logining in
 -Logout Feature
--Profile
+-Get the feed and add the feed in the store
+-build the user card on feed
+-Edit profile Feature
+-Show Toast Message after updating profile
+See all my connections
 
 Body
     NavBar
