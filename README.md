@@ -25,7 +25,10 @@ Login and seeing whether the data is coming properly in the store
 -build the user card on feed
 -Edit profile Feature
 -Show Toast Message after updating profile
-See all my connections
+New Page - See all my connections
+New Page - See all my connection Requests
+Features - Accept/reject the connection Request
+
 
 Body
     NavBar

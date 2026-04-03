@@ -33,11 +33,12 @@ const Connections = () => {
             const{firstName, lastName, photoUrl, age, gender, about} = connections
          return ( <div className='flex m-4 p-4 rounded-lg bg-base-300 w-1/3 mx-auto'>
             <div > 
-                <img className='w-20 h-20 rounded-full' src={photoUrl}/>
+                <img className='w-20 h-20 rounded-full object-cover' src={photoUrl}/>
             </div> 
 
             <div className='text-left  m-4'>
                <h2>{firstName + " " + lastName}</h2> 
+               <h2>{age + " , " + gender}</h2> 
                <p>{about}</p>
             </div>  
           </div>)
