@@ -29,9 +29,12 @@ New Page - See all my connections
 New Page - See all my connection Requests
 Features - Accept/reject the connection Request
 Send/ignore the user card from the feed
+Signup new user
 
 Body
     NavBar
     Route=/ => Feed
     Route=/login => Login
     Route=/connection => Connections
+
+    
