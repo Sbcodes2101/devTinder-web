@@ -36,11 +36,13 @@ const Connections = () => {
                 <img className='w-20 h-20 rounded-full object-cover' src={photoUrl}/>
             </div> 
 
-            <div className='text-left  m-4'>
+            <div className='text-left m-4'>
                <h2>{firstName + " " + lastName}</h2> 
                <h2>{age + " , " + gender}</h2> 
                <p>{about}</p>
-            </div>  
+            </div> 
+             
+            <button className='btn btn-sm btn-primary'>Chat</button>
           </div>)
         })}
     </div>
