@@ -37,5 +37,9 @@ Body
     Route=/login => Login
     Route=/connection => Connections
 
-#Real time Chat using websocket(socket.io)
+# Real time Chat using websocket(socket.io)
+ -Build the UI for a chat window on /chat/:targetUserId
+ -Setup socket.io in backend
+ 
+
 
