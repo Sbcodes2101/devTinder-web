@@ -1,55 +1,76 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
+import { createSocketConnection } from "../utils/socket";
+import { useSelector } from "react-redux";
 const Chat = () => {
   const { targetUserId } = useParams();
-  const [messages, setMessages] = useState([{ text: "Hello!" }]);
-  console.log(targetUserId);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const user = useSelector((state) => state.user);
+  const userId = user?._id;
+  const firstName = user?.firstName;
+
+  useEffect(() => {
+    if (!userId) return;
+    const socket = createSocketConnection();
+    socket.emit("joinChat", {
+      firstName,
+      userId,
+      targetUserId,
+    });
+
+    socket.on("messageReceived", ({ firstName, text: newMessage }) => {
+      console.log(firstName + ": " + newMessage);
+      setMessages((prev) => [...prev, { firstName, text: newMessage }]);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [userId, targetUserId]);
+
+  const sendMessage = () => {
+    const socket = createSocketConnection();
+    socket.emit("sendMessage", {
+      firstName,
+      userId,
+      targetUserId,
+      text: newMessage,
+    });
+  };
+
   return (
     <div className="w-1/2 mx-auto border border-gray-600 m-5 h-[70vh] rounded-lg flex flex-col">
       <h1 className="p-5 border-b border-gray-600">Chat</h1>
-      <div className="flex-1 overflow-scroll p-5">
-        {/* Chat messages will go here */}
-        {messages.map((msg, index) => (
-          <>
-            <div key={index} className="chat chat-start">
-              <div className="chat-image avatar">
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS chat bubble component"
-                    src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp"
-                  />
-                </div>
+       <div className="flex-1 overflow-y-scroll p-5">
+        {messages.map((msg, index) => {
+          const isMe = msg.firstName === firstName;
+          return (
+            <div key={index} className={`chat ${isMe ? "chat-end" : "chat-start"}`}>
+              <div className="chat-header mb-1">
+                {msg.firstName}
+                <time className="text-xs opacity-50 ml-1">12:45</time>
               </div>
-              <div className="chat-header">
-                Obi-Wan Kenobi
-                <time className="text-xs opacity-50">12:45</time>
+              <div className="chat-bubble">{msg.text}</div>
+              <div className="chat-footer opacity-50 mt-1">
+                {isMe ? "Delivered" : ""}
               </div>
-              <div className="chat-bubble">You were the Chosen One!</div>
-              <div className="chat-footer opacity-50">Delivered</div>
             </div>
-            <div className="chat chat-end">
-              <div className="chat-image avatar">
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS chat bubble component"
-                    src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp"
-                  />
-                </div>
-              </div>
-              <div className="chat-header">
-                Anakin
-                <time className="text-xs opacity-50">12:46</time>
-              </div>
-              <div className="chat-bubble">I hate you!</div>
-              <div className="chat-footer opacity-50">Seen at 12:46</div>
-            </div>
-          </>
-        ))}
+          );
+        })}
       </div>
+
       <div className="p-5 border-t border-gray-600 flex gap-2 items-center">
-        <input className="flex-1 border border-gray-600 text-white rounded px-4"></input>
-        <button className="btn btn-sm btn-primary">Send</button>
+        <input
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          className="flex-1 border border-gray-600 text-white rounded px-4"
+        ></input>
+        <button onClick={sendMessage} className="btn btn-sm btn-primary">
+          Send
+        </button>
       </div>
     </div>
   );
