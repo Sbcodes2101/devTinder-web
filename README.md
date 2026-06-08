@@ -40,6 +40,6 @@ Body
 # Real time Chat using websocket(socket.io)
  -Build the UI for a chat window on /chat/:targetUserId
  -Setup socket.io in backend
- 
+ -npm i socket.io
 
 
