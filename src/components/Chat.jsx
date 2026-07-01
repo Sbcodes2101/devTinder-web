@@ -20,15 +20,16 @@ const Chat = () => {
     });
 
     console.log(chat.data.messages)
+    
 
     const chatMessages = chat?.data?.messages.map((msg) => {
     return {
         firstName: msg?.senderId?.firstName,
         lastName: msg?.senderId?.lastName,
-        text: msg?.text                  // ✅ "text" matches your schema
-    }
-  });
-  setMessages(chatMessages)
+        text: msg?.text                
+      }
+    });
+    setMessages(chatMessages)
   }
 
   useEffect(()=>{
