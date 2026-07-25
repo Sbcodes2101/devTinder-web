@@ -17,9 +17,10 @@ const EditProfile = ({ user }) => {
   const [toast, setToast] = useState(false);
   const dispatch = useDispatch();
 
+
   const saveProfile = async () => {
     try {
-      if (!user) return null; 
+      if (!user) return null;
       const res = await axios.patch(
         BASE_URL + "profile/edit",
         {
@@ -34,8 +35,10 @@ const EditProfile = ({ user }) => {
           withCredentials: true,
         },
       );
+      
       dispatch(addUser(res?.data?.data));
       setToast(true);
+
       setTimeout(() => {
         setToast(false);
       }, 3000);

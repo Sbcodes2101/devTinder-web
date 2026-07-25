@@ -32,9 +32,11 @@ const Chat = () => {
     setMessages(chatMessages)
   }
 
+
   useEffect(()=>{
     fetchChatMessages();
   },[])
+
 
   useEffect(()=>{
     if(!userId) return;
@@ -50,6 +52,7 @@ const Chat = () => {
     return () => {
       socket.current.disconnect();
     }
+
   },[userId,targetUserId]);
 
   const sendMessage = () => {
@@ -59,7 +62,6 @@ const Chat = () => {
 
     setNewMessage("")
   }
-
 
   return(
     <div className="w-1/2 mx-auto border border-grey-600 m-5 h-[70vh] flex flex-col">

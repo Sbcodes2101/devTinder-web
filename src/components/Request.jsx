@@ -7,7 +7,6 @@ const Request = () => {
   const requests = useSelector((store) => store.requests);
   const dispatch = useDispatch();
   
-
   const reviewRequest = async (status,_id) => {
     try{
       const res = axios.post(BASE_URL + 'request/review/' + status + '/' + _id,{},{
@@ -25,8 +24,12 @@ const Request = () => {
       const res = await axios.get(BASE_URL + "user/requests/received", {
         withCredentials: true,
       });
+
       dispatch(addRequest(res?.data?.data));
-    } catch (err) {
+
+    } 
+    
+    catch (err) {
       console.error(err);
     }
   };
@@ -60,7 +63,7 @@ const Request = () => {
               <p>{about}</p>
             </div>
             <button className="btn btn-active btn-primary px-12 py-4" onClick={()=>reviewRequest("rejected", request._id)}>Reject</button>
-        <button className="btn btn-active btn-secondary px-12 py-4" onClick={()=>reviewRequest("accepted", request._id)}>Accept</button>
+            <button className="btn btn-active btn-secondary px-12 py-4" onClick={()=>reviewRequest("accepted", request._id)}>Accept</button>
           </div>
         );
       })}
